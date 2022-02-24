@@ -1,6 +1,6 @@
 let div = document.createElement("div");
 div.setAttribute("id","div");
-div.classList.add("row","bg-info","border","border-dark");
+div.classList.add("row","bg-info","border","border-dark","p-4");
 document.body.appendChild(div);
 
 let div1 = document.createElement("div");
@@ -85,7 +85,7 @@ code()
 
         let btnMore = document.createElement("button");
         btnMore.setAttribute("id","MoreDetails");
-        btnMore.classList.add("btn-light","mt-1","mb-2","btn-link","text-center",
+        btnMore.classList.add("btn-light","btn-link","text-center",
         "text-dark","text-decoration-underline","border","border-dark");
         btnMore.innerHTML = "MoreDetails"
         btnMore.addEventListener("click",() =>{
@@ -103,3 +103,11 @@ code()
     alert(err);
 })
 
+let SearchId = document.getElementById("searchId");
+let searchBtn = document.getElementById("search");
+
+searchBtn.addEventListener("click",() =>{
+    if(SearchId.value){
+        window.find(SearchId.value);
+    }
+})
