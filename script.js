@@ -88,15 +88,34 @@ code()
         btnMore.classList.add("btn-light","btn-link","text-center",
         "text-dark","text-decoration-underline","border","border-dark");
         btnMore.innerHTML = "MoreDetails"
-        btnMore.addEventListener("click",() =>{
-                let sum = " ";
-               for(let i = 0;i <= 5;i++){
-                let respo = x.characters;
-                sum = sum + " " + respo[i]; 
-            }
-            alert(sum);
+        
+        let Char_div = document.createElement("div");
+        Char_div.classList.add("text-center","border","border-dark");
+        
+           btnMore.addEventListener("click",() =>{
+                let charGet = x.characters;
+                let a = [];
+                for(let i = 0; i < 5 ; i++){
+                    fetch(charGet[i])
+                    .then((x)=>x.json())
+                    .then((respo) => {
+                        var charName = respo.name;
+                        a.push(charName);
+                        console.log("a",a);
+                    })
+                }
+                setTimeout(()=>{
+                    let unorder = document.createElement("ul");
+                    Char_div.appendChild(unorder);
+                    for(let i = 0; i < 5 ; i++){
+                        let li = document.createElement("li");
+                        li.innerHTML = a[i]; 
+                        unorder.appendChild(li);    
+                    }  
+                },2000);                
         })
         div.appendChild(btnMore);
+        div.appendChild(Char_div);   
     })
 })
 .catch((err) => {
